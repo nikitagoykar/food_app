@@ -24,28 +24,28 @@ public class MenuItemController {
     }
 
     // Fetch MenuItem record by MenuItemById
-    @GetMapping("/MenuItem/{MenuItemId}")
+    @GetMapping("/menuItem/{MenuItemId}")
     ResponseEntity<MenuItemDto> createHostel(@PathVariable int MenuItemId) {
         MenuItemDto recivedMenuItem = this.menuItemService.getMenuItemById(MenuItemId);
         return new ResponseEntity<MenuItemDto>(recivedMenuItem, HttpStatus.OK);
     }
 
     //Fetch all MenuItem record by AllMenuItems
-    @GetMapping("/MenuItem")
+    @GetMapping("/menuItem")
     ResponseEntity<List<MenuItemDto>> createMenuItem() {
         List<MenuItemDto> recivedAllMenuItems = this.menuItemService.getAllMenuItem();
         return new ResponseEntity<List<MenuItemDto>>(recivedAllMenuItems, HttpStatus.OK);
     }
 
     // update MenuItem record MenuItemById
-    @PutMapping("/MenuItem/{MenuItemId}")
+    @PutMapping("/menuItem/{MenuItemId}")
     ResponseEntity<MenuItemDto> updateMenuItemById(@RequestBody MenuItemDto MenuItemDto, @PathVariable int MenuItemId) {
         MenuItemDto updatedMenuItem = this.menuItemService.updateMenuItemById(MenuItemDto, MenuItemId);
         return new ResponseEntity<MenuItemDto>(updatedMenuItem, HttpStatus.OK);
     }
 
     //delete MenuItem record by MenuItemId
-    @DeleteMapping("/MenuItem/{MenuItemId}")
+    @DeleteMapping("/menuItem/{MenuItemId}")
     ResponseEntity<ApiResponce>deleteMenuItem(@PathVariable int MenuItemId)
     {
         this.menuItemService.deleteMenuItemById(MenuItemId);
@@ -53,5 +53,10 @@ public class MenuItemController {
         responce.setMessage("MenuItem deleted succesfully");
         responce.setSucess(true);
         return new ResponseEntity<ApiResponce>(responce,HttpStatus.OK);
+    }
+    @GetMapping("/menuItem/category/{category}")
+    public ResponseEntity<List<MenuItemDto>> getMenuItemsByCategory(@PathVariable String category) {
+        List<MenuItemDto> menuItems = menuItemService.getMenuItemsByCategory(category);
+        return ResponseEntity.ok(menuItems);
     }
 }

@@ -61,6 +61,19 @@ public class MenuItemServiceImplimentation implements MenuItemService {
         this.menuItemRepository.delete(MenuItemEntity);
  
     }
+
+    @Override
+    public List<MenuItemDto> getMenuItemsByCategory(String category) {
+        // Fetch the list of entities from the repository
+        List<MenuItemEntity> menuItemEntities = menuItemRepository.findByCategory(category);
+
+        // Map the list of entities to a list of DTOs
+        return menuItemEntities.stream()
+                .map(menuItem -> modelMapper.map(menuItem, MenuItemDto.class))
+                .toList(); // Convert the stream back to a list
+    }
+
+
     public MenuItemEntity MenuItemDtoToMenuItemEntity(MenuItemDto MenuItemDto) {
         return this.modelMapper.map(MenuItemDto, MenuItemEntity.class);
     }
