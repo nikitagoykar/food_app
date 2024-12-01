@@ -1,0 +1,30 @@
+.menu-section {
+  padding: 50px 0;
+  background-color: #f8f9fa;
+}
+
+.menu-section h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.card {
+  border: none;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.btn.active {
+  background-color: #ff5722;
+  color: white;
+  border-color: #ff5722;
+}
